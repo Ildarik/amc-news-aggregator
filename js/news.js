@@ -14,12 +14,20 @@ News.renderNews = function(articles) {
   for (var newsIndex = 0; newsIndex < articles.length; newsIndex++) {
     var oneNews = articles[newsIndex];
     var htmlNewsRow =
-      "<div>" +
-      oneNews.title +
-      "</div>" +
-      '<img src="' +
+      "<div class='newsItem'>" +
+      '<div><img width="500" src="' +
       oneNews.urlToImage +
-      '"/>';
+      '"/></div><div class="info"><a href="' +
+      oneNews.url +
+      '"><h5>' +
+      oneNews.title +
+      "</h5></a><span class='source'>" +
+      oneNews.source.name +
+      "</span><span class='source'>" +
+      oneNews.publishedAt +
+      "</span><br><p>" +
+      oneNews.description +
+      "</p></div><hr/></div>";
 
     $newsList.append(htmlNewsRow);
   }
@@ -28,7 +36,7 @@ News.renderNews = function(articles) {
 News.getNews = function() {
   $.ajax({
     url:
-      "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=64ddb2a50e4a4a8f993bb110839bed71",
+      "https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=64ddb2a50e4a4a8f993bb110839bed71",
     success: function(responce) {
       News.renderNews(responce.articles);
     }
