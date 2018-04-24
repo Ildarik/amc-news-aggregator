@@ -28,8 +28,9 @@ News.renderNews = function(articles) {
       "</span><br><p>" +
       oneNews.description +
       "</p></div><hr/></div>";
-
-    $newsList.append(htmlNewsRow);
+    if (oneNews.urlToImage != null) {
+      $newsList.append(htmlNewsRow);
+    }
   }
 };
 
