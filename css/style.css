@@ -1,0 +1,31 @@
+.container h1 {
+  text-align: center;
+}
+
+.newsItem {
+  margin: 20px 20px;
+  display: flex;
+}
+
+.newsItem img {
+  width: 150px;
+}
+
+.newsItem h5 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.info {
+  margin-left: 15px;
+}
+
+.source {
+  margin-right: 20px;
+  font-size: 14px;
+  color: gray;
+}
+
+.newsItem p {
+  margin-top: 5px;
+}
