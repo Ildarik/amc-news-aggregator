@@ -17,7 +17,7 @@ News.renderNews = function(articles) {
       "<div class='newsItem'>" +
       '<div><img width="500" src="' +
       oneNews.urlToImage +
-      '"/></div><div class="info"><a href="' +
+      '"/></div><div class="info"><a target="_blank" href="' +
       oneNews.url +
       '"><h5>' +
       oneNews.title +
