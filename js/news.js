@@ -48,7 +48,7 @@ News.getNews = function(pageNumber) {
       "https://newsapi.org/v2/top-headlines?" +
       "country=us&" +
       "category=general&" +
-      "pageSize=5&" +
+      "pageSize=10&" +
       "apiKey=64ddb2a50e4a4a8f993bb110839bed71&" +
       "page=" +
       pageNumber,
