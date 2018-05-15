@@ -2,13 +2,45 @@ var News = {};
 
 const API_KEY = "64ddb2a50e4a4a8f993bb110839bed71";
 
+let category = "";
+
+let page = 1;
+
 $(document).ready(function() {
   $("#pagination").twbsPagination({
     totalPages: 5,
     visiblePages: 10,
     onPageClick: function(event, page) {
-      News.getNews(page);
+      News.getNews(page, category);
     }
+  });
+  $("#business").click(function() {
+    category = "business";
+    News.getNews(page, category);
+  });
+  $("#sports").click(function() {
+    category = "sports";
+    News.getNews(page, category);
+  });
+  $("#general").click(function() {
+    category = "general";
+    News.getNews(page, category);
+  });
+  $("#entertainment").click(function() {
+    category = "entertainment";
+    News.getNews(page, category);
+  });
+  $("#health").click(function() {
+    category = "health";
+    News.getNews(page, category);
+  });
+  $("#science").click(function() {
+    category = "science";
+    News.getNews(page, category);
+  });
+  $("#technology").click(function() {
+    category = "technology";
+    News.getNews(page, category);
   });
 });
 
@@ -42,13 +74,14 @@ News.renderNews = function(articles) {
   }
 };
 
-News.getNews = function(pageNumber) {
+News.getNews = function(pageNumber, category) {
   $.ajax({
     url:
       "https://newsapi.org/v2/top-headlines?" +
       "country=us&" +
-      "category=general&" +
-      "pageSize=10&" +
+      "category=" +
+      category +
+      "&pageSize=10&" +
       "apiKey=64ddb2a50e4a4a8f993bb110839bed71&" +
       "page=" +
       pageNumber,

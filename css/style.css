@@ -43,3 +43,15 @@
 .newsItem p {
   margin-top: 5px;
 }
+
+.filters {
+  padding-top: 20px;
+}
+
+.filters ul {
+  list-style: none;
+}
+
+.filters ul li {
+  margin: 10px 0;
+}
