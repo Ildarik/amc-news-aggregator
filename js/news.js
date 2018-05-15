@@ -5,7 +5,7 @@ const API_KEY = "64ddb2a50e4a4a8f993bb110839bed71";
 $(document).ready(function() {
   $("#pagination").twbsPagination({
     totalPages: 5,
-    visiblePages: 5,
+    visiblePages: 10,
     onPageClick: function(event, page) {
       News.getNews(page);
     }
@@ -30,7 +30,9 @@ News.renderNews = function(articles) {
       "</h5></a><span class='source'>" +
       oneNews.source.name +
       "</span><span class='source'>" +
-      oneNews.publishedAt +
+      moment(oneNews.publishedAt)
+        .startOf("hour")
+        .fromNow() +
       "</span><br><p>" +
       oneNews.description +
       "</p></div><hr/></div>";
