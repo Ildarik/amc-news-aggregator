@@ -6,9 +6,11 @@ let category = "";
 
 let page = 1;
 
+var totalNews = 30;
+
 $(document).ready(function() {
   $("#pagination").twbsPagination({
-    totalPages: 5,
+    totalPages: totalNews / 10,
     visiblePages: 10,
     onPageClick: function(event, page) {
       News.getNews(page, category);
@@ -82,7 +84,7 @@ News.getNews = function(pageNumber, category) {
       "category=" +
       category +
       "&pageSize=10&" +
-      "apiKey=64ddb2a50e4a4a8f993bb110839bed71&" +
+      "apiKey=9fdb2e24b37e4bfbaa19990013ec3fae&" +
       "page=" +
       pageNumber,
     success: function(responce) {
