@@ -3,7 +3,13 @@ var News = {};
 const API_KEY = "64ddb2a50e4a4a8f993bb110839bed71";
 
 $(document).ready(function() {
-  News.getNews();
+  $("#pagination").twbsPagination({
+    totalPages: 5,
+    visiblePages: 5,
+    onPageClick: function(event, page) {
+      News.getNews(page);
+    }
+  });
 });
 
 News.renderNews = function(articles) {
@@ -34,10 +40,16 @@ News.renderNews = function(articles) {
   }
 };
 
-News.getNews = function() {
+News.getNews = function(pageNumber) {
   $.ajax({
     url:
-      "https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=64ddb2a50e4a4a8f993bb110839bed71",
+      "https://newsapi.org/v2/top-headlines?" +
+      "country=us&" +
+      "category=general&" +
+      "pageSize=5&" +
+      "apiKey=64ddb2a50e4a4a8f993bb110839bed71&" +
+      "page=" +
+      pageNumber,
     success: function(responce) {
       News.renderNews(responce.articles);
     }
