@@ -1262,21 +1262,8 @@ var MockNews = [
   }
 ];
 
-let page = 1;
-
-// array length
-var totalNews = 30;
-
 $(document).ready(function() {
-  // $("#pagination").twbsPagination({
-  //   totalPages: totalNews / 10,
-  //   visiblePages: 10,
-  //   onPageClick: function(event, page) {
-  //     News.getNews(page, category);
-  //   }
-  // });
-
-  News.getNews();
+  News.renderNews(MockNews);
 
   // CATEGORY filters
 
@@ -1426,37 +1413,36 @@ $(document).ready(function() {
 });
 
 News.renderNews = function(articles) {
-  var $newsList = $("#news");
-
-  $newsList.empty();
-
-  for (var newsIndex = 0; newsIndex < articles.length; newsIndex++) {
-    var oneNews = articles[newsIndex];
-    var htmlNewsRow =
-      "<div class='newsItem'>" +
-      '<div><img width="500" src="' +
-      oneNews.urlToImage +
-      '"/></div><div class="info"><a target="_blank" href="' +
-      oneNews.url +
-      '"><h5>' +
-      oneNews.title +
-      "</h5></a><span class='source'>" +
-      oneNews.source.name +
-      "</span><span class='source'>" +
-      moment(oneNews.publishedAt)
-        .startOf("hour")
-        .fromNow() +
-      "</span><span class='source'>Tonality: " +
-      oneNews.tone +
-      "</span><br><p>" +
-      oneNews.description +
-      "</p></div><hr/></div>";
-    if (oneNews.urlToImage != null) {
-      $newsList.append(htmlNewsRow);
-    }
+  function template(data) {
+    var html = "";
+    $.each(data, function(index, item) {
+      html +=
+        '<div class="newsItem"><div><img width="500" src="' +
+        item.urlToImage +
+        '"/></div><div class="info"><a target="_blank" href="' +
+        item.url +
+        '"><h5>' +
+        item.title +
+        "</h5></a><span class='source'>" +
+        item.source.name +
+        "</span><span class='source'>" +
+        moment(item.publishedAt)
+          .startOf("hour")
+          .fromNow() +
+        "</span><span class='source'>Tonality: " +
+        item.tone +
+        "</span><br><p>" +
+        item.description +
+        "</p></div><hr/></div>";
+    });
+    return html;
   }
-};
 
-News.getNews = function(pageNumber, category) {
-  News.renderNews(MockNews);
+  $("#pagination-container").pagination({
+    dataSource: articles,
+    callback: function(data, pagination) {
+      var html = template(data);
+      $("#data-container").html(html);
+    }
+  });
 };
