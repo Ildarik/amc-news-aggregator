@@ -55,3 +55,12 @@
 .filters ul li {
   margin: 10px 0;
 }
+
+.paginationjs-pages ul {
+  list-style: none;
+}
+
+.paginationjs-pages ul li {
+  display: inline;
+  margin: 10px;
+}
